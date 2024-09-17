@@ -28,7 +28,7 @@ public class RegisterController extends HttpServlet {
 				if (cookie.getName().equals("username")) {
 					session = req.getSession(true);
 					session.setAttribute("username", cookie.getValue());
-					resp.sendRedirect(req.getContextPath() + "/admin");
+					resp.sendRedirect(req.getContextPath() + "/register");
 					return;
 				}
 			}
