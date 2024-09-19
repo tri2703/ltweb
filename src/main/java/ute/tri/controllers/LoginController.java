@@ -13,11 +13,10 @@ import ute.tri.models.UserModel;
 import ute.tri.services.IUserService;
 import ute.tri.services.impl.UserService;
 import ute.tri.utils.Constant;
-@WebServlet(urlPatterns = {"/login"})
+@SuppressWarnings("serial")
+@WebServlet(urlPatterns = "/login")
 public class LoginController extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
-	IUserService service = new UserService();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
@@ -77,11 +76,10 @@ public class LoginController extends HttpServlet {
 			req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
 		}
 	}
-	private void saveRemeberMe(HttpServletResponse resp, String username) {
-		Cookie cookie = new Cookie(Constant.COOKIE_REMEMBER,username);
-				 cookie.setMaxAge(30*60);
-				 resp.addCookie(cookie);
+
+	private void saveRemeberMe(HttpServletResponse response, String username) {
+		Cookie cookie = new Cookie(Constant.COOKIE_REMEMBER, username);
+		cookie.setMaxAge(30 * 60);
+		response.addCookie(cookie);
 	}
 }
-
-

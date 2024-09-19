@@ -21,7 +21,7 @@ public class RegisterController extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/register");
 			return;
 		}
-		//Check cookie
+//Check cookie
 		Cookie[] cookies = req.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {

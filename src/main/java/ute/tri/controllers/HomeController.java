@@ -11,6 +11,10 @@ import jakarta. servlet.http.HttpServletResponse;
 public class HomeController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
+	public HomeController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

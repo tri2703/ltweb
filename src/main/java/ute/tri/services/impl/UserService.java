@@ -48,4 +48,22 @@ public class UserService implements IUserService{
 		return false;
 	}
 
+	@Override
+	public void insert(UserModel user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkExistPhone(String phone) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updatePassword(String username, String newPassword) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

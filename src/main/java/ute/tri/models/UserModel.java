@@ -111,6 +111,6 @@ public class UserModel implements Serializable {
 		this.roleid = roleid;
 		this.createDate = createDate;
 	}
+	
+	
 }
-	
-	
