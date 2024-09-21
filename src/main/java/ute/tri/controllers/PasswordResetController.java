@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/reset-password")
+@WebServlet("/resetPasswordForm")
 public class PasswordResetController extends HttpServlet {
     /**
 	 * 

@@ -11,7 +11,7 @@ import ute.tri.models.UserModel;
 import ute.tri.services.IUserService;
 import ute.tri.services.impl.UserService;
 
-@WebServlet("/reset-password-request")
+@WebServlet("/resetPasswordRequest")
 public class PasswordResetRequestController extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
