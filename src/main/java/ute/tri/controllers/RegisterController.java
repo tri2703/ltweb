@@ -39,37 +39,44 @@ public class RegisterController extends HttpServlet {
 	@SuppressWarnings("static-access")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setCharacterEncoding("UTF-8");
-		req.setCharacterEncoding("UTF-8");
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		String email = req.getParameter("email");
-		String fullname = req.getParameter("fullname");
-		String phone = req.getParameter("phone");
-		IUserService service = new UserService();
-		String alertMsg = "";
-		if (service.checkExistEmail(email)) {
-			alertMsg = "Email đã tồn tại!";
-			req.setAttribute("alert", alertMsg);
-			req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
-			return;
-		}
-		if (service.checkExistUsername(username)) {
-			alertMsg = "Tài khoản đã tồn tại!";
-			req.setAttribute("alert", alertMsg);
-			req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
-			return;
-		}
-		boolean isSuccess = service.register(username, password, email, fullname, phone);
-		if (isSuccess) {
-//SendMail sm = new SendMail();
-//sm.sendMail(email, "Shopping.iotstar.vn", "Welcome to Shopping. Please Login to use service. Thanks !");
-			req.setAttribute("alert", alertMsg);
-			resp.sendRedirect(req.getContextPath() + "/login");
-		} else {
-			alertMsg = "System error!";
-			req.setAttribute("alert", alertMsg);
-			req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
-		}
+	    resp.setCharacterEncoding("UTF-8");
+	    req.setCharacterEncoding("UTF-8");
+	    String username = req.getParameter("username");
+	    String password = req.getParameter("password");
+	    String email = req.getParameter("email");
+	    String fullname = req.getParameter("fullname");
+	    String phone = req.getParameter("phone");
+	    IUserService service = new UserService();
+	    String alertMsg = "";
+
+	    // Kiểm tra tồn tại email
+	    if (service.checkExistEmail(email)) {
+	        alertMsg = "Email đã tồn tại!";
+	        req.setAttribute("alert", alertMsg);
+	        req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
+	        return;
+	    }
+
+	    // Kiểm tra tồn tại username
+	    if (service.checkExistUsername(username)) {
+	        alertMsg = "Tài khoản đã tồn tại!";
+	        req.setAttribute("alert", alertMsg);
+	        req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
+	        return;
+	    }
+
+	    // Đăng ký người dùng
+	    boolean isSuccess = service.register(username, password, email, fullname, phone);
+	    if (isSuccess) {
+	        req.setAttribute("alert", alertMsg);
+	        resp.sendRedirect(req.getContextPath() + "/login");
+	    } else {
+	        alertMsg = "Có lỗi xảy ra trong hệ thống! Vui lòng thử lại sau.";
+	        req.setAttribute("alert", alertMsg);
+	        req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
+	        // Log lỗi chi tiết để kiểm tra
+	        System.err.println("Registration failed for user: " + username);
+	    }
 	}
+
 }

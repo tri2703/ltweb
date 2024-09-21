@@ -44,8 +44,13 @@ public class UserService implements IUserService{
 
 	@Override
 	public boolean register(String username, String password, String email, String fullname, String phone) {
-		// TODO Auto-generated method stub
-		return false;
+		if (userDao.checkExistUsername(username)) {
+			return false;
+		}
+		long millis = System.currentTimeMillis();
+		java.sql.Date date = new java.sql.Date(millis);
+		userDao.insert(new UserModel(username, password, null, fullname, email, phone, 5, date));
+		return true;
 	}
 
 	@Override
