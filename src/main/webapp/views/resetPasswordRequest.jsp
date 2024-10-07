@@ -18,4 +18,3 @@
         <button type="submit">Reset Password</button>
     </form>
 </body>
-</html>

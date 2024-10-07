@@ -1,3 +1,4 @@
+
 package ute.tri.utils;
 
 public class Constant {
@@ -6,3 +7,4 @@ public class Constant {
 	public static final String REGISTER = "/views/register.jsp";
 	public static final String DIR ="D:\\upload";
 }
+

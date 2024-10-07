@@ -1,4 +1,5 @@
 package ute.tri.controllers;
+
 import ute.tri.services.IUserService;
 import ute.tri.services.impl.UserService;
 import jakarta.servlet.ServletException;
@@ -9,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/resetPasswordForm")
+@WebServlet("/reset-password")
 public class PasswordResetController extends HttpServlet {
     /**
 	 * 

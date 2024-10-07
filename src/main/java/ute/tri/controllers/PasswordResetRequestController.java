@@ -1,17 +1,17 @@
 package ute.tri.controllers;
 
-import java.io.IOException;
-
+import ute.tri.services.IUserService;
+import ute.tri.services.impl.UserService;
+import ute.tri.models.UserModel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ute.tri.models.UserModel;
-import ute.tri.services.IUserService;
-import ute.tri.services.impl.UserService;
 
-@WebServlet("/resetPasswordRequest")
+import java.io.IOException;
+
+@WebServlet("/reset-password-request")
 public class PasswordResetRequestController extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class PasswordResetRequestController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         
-        UserModel user = userService.FindByUserName(username); // Corrected line
+        UserModel user = userService.FindByUserName(username);
 
         if (user != null) {
             req.setAttribute("username", username);
@@ -37,3 +37,4 @@ public class PasswordResetRequestController extends HttpServlet {
         }
     }
 }
+
