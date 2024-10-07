@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-trang chu cua manager!
+xin chao manager
 </body>
 </html>

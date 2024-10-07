@@ -32,19 +32,46 @@ public class UserService implements IUserService{
 
 	@Override
 	public boolean checkExistEmail(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		return userDao.checkExistEmail(email);
+		//rerturn false;
 	}
 
 	@Override
 	public boolean checkExistUsername(String username) {
-		// TODO Auto-generated method stub
-		return false;
+		return userDao.checkExistUsername(username);
+		//return false;
 	}
 
 	@Override
 	public boolean register(String username, String password, String email, String fullname, String phone) {
-		// TODO Auto-generated method stub
+		if (userDao.checkExistUsername(username)) {
+			return false;
+		}
+		long millis = System.currentTimeMillis();
+		java.sql.Date date = new java.sql.Date(millis);
+		userDao.insert(new UserModel(username, password, null, fullname, email, phone, 5, date));
+		return true;
+	}
+
+	@Override
+	public void insert(UserModel user) {
+		userDao.insert(user);
+	}
+
+	@Override
+	public boolean checkExistPhone(String phone) {
+		return userDao.checkExistPhone(phone);
+		//return false;
+	}
+
+	@Override
+	public boolean updatePassword(String username, String newPassword) {
+        UserModel user = userDao.findByUserName(username);
+        if (user != null) {
+            user.setPassword(newPassword);
+            // Update user in the database
+            return userDao.update(user);
+        }
 		return false;
 	}
 
